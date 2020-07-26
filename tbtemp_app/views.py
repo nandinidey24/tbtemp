@@ -58,6 +58,7 @@ def signup(request):
             confirmPassword = conf_pw,
         )
         obj1.save()
+        return redirect("login")
     template_name = 'signup.html'
     context = {'form' : 'form'}
     return render(request, template_name, context)
@@ -72,13 +73,13 @@ def resetPassword(request):
     context = {'form' : 'form'}
     return render(request, template_name, context)
 
-@login_required
+@login_required(login_url='login')
 def subject(request):
     template_name = 'subject.html'
     context = {'form' : 'form'}
     return render(request, template_name, context)
 
-@login_required
+@login_required(login_url='login')
 def document(request):
     template_name = 'document.html'
     context = {'form' : 'form'}
