@@ -29,7 +29,7 @@ class Topic(models.Model):
 class Activity(models.Model):
     name = models.CharField(blank = False, max_length = 20)
     topic = models.ForeignKey(Topic, on_delete = models.CASCADE, related_name = "Activity")
-    files = models.FileField()
+    files = models.FileField(upload_to = 'activities')
 
     def __str__(self):
         return self.name
@@ -37,7 +37,7 @@ class Activity(models.Model):
 class Document(models.Model):
     name = models.CharField(blank = False, max_length = 50)
     topic = models.ForeignKey(Topic, on_delete = models.CASCADE, related_name = "Document")
-    files = models.FileField()
+    files = models.FileField(upload_to = 'files')
 
     def __str__(self):
         return self.name
@@ -49,7 +49,7 @@ class StudentUpload(models.Model):
     )
     activity = models.ForeignKey(Activity, on_delete = models.CASCADE, related_name = "StudentUpload")
     student = models.ForeignKey(Student, on_delete = models.CASCADE, related_name = "StudentUpload")
-    files = models.FileField()
+    files = models.FileField(upload_to = 'uploads')
     status = models.CharField(max_length = 20, choices = STUDENT_UPLOAD_STATUS)
     name = models.CharField(blank = False, max_length = 20)
 
